@@ -100,7 +100,7 @@ int main() {
   ifstream inStream1;
   int iArray1[MAX_SIZE];
   int iArray1_size;
-  inStream1.open(input1);
+  inStream1.open(input1.c_str());
   iArray1_size = readFile(iArray1, inStream1);
   cout << "\nThe list of " << iArray1_size << " numbers in file ";
   cout << input1 << " is:\n";
@@ -118,7 +118,7 @@ int main() {
   ifstream inStream2;
   int iArray2[MAX_SIZE];
   int iArray2_size;
-  inStream2.open(input2);
+  inStream2.open(input2.c_str());
   iArray2_size = readFile(iArray2, inStream2);
   cout << "The list of " << iArray2_size << " numbers in file ";
   cout << input2 << " is:\n";
@@ -141,7 +141,7 @@ int main() {
     cin >> output;
   } while (cin.fail() || !checkFile(output));
   ofstream outStream;
-  outStream.open(output);
+  outStream.open(output.c_str());
   writeFile(oArray, outStream, oArray_size);
   cout << "*** Please check the new file - " << output << " ***\n";
   cout << "*** Goodbye. ***\n";
@@ -187,13 +187,15 @@ void testReadFile() {
   ifstream inStream1;
   int iArray1[MAX_SIZE];
   int iArray1_size;
-  inStream1.open("input1.txt");
+  string input1 = "input1.txt";
+  inStream1.open(input1.c_str());
   cout << "Unit Test Case 2: readFile() - \n\tCase 2.1: Read input1.txt\n";
   iArray1_size = readFile(iArray1, inStream1);
   assert(6 == iArray1_size);
   cout << "\tCase 2.1 passed\n";
   inStream1.close();
-  inStream1.open("input2.txt");
+  string input2 = "input2.txt";
+  inStream1.open(input2.c_str());
   cout << "\tCase 2.2: Read input2.txt\n";
   assert(5 == readFile(iArray1, inStream1));
   inStream1.close();
